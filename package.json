@@ -1,0 +1,20 @@
+{
+  "name": "split-test-task",
+  "version": "1.0.0",
+  "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "shopify theme dev --store i1pve1-02.myshopify.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macksik/splitdev-test-task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macksik/splitdev-test-task/issues"
+  },
+  "homepage": "https://github.com/macksik/splitdev-test-task#readme"
+}
