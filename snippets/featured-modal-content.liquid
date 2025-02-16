@@ -1,0 +1,88 @@
+<div class="modal-overlay">
+  <div class="modal">
+    <button class="modal__close" aria-label="{{ 'sections.featured_product.modal.close' | t }}">
+      {{- 'icon-close-modal.svg' | inline_asset_content -}}
+    </button>
+    <div class="modal__body">
+      {% if image != blank %}
+        <div class="modal__image">
+          {{ image | image_url: width: 411 | image_tag: loading: 'lazy', class: 'modal__image-img', alt: image.alt }}
+        </div>
+      {% endif %}
+      <div class="modal__content">
+        <span class="modal__title">{{ heading }}</span>
+        <div class="modal__description">
+          {{ description }}
+        </div>
+        {% if products != blank %}
+          <div class="modal__products">
+            {% for product in products %}
+              {% if product.available %}
+                <div
+                  class="modal__product"
+                  data-product-id="{{ product.id }}"
+                  data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                >
+                  <div class="modal__product-image">
+                    {{ product.featured_image | image_url: width: 411 | image_tag: loading: 'lazy' }}
+                  </div>
+                  <div class="modal__product-info">
+                    <h3 aria-label="{{ product.title }}">{{ product.title }}</h3>
+                    <p class="modal__product-vendor" aria-label="{{ product.vendor }}">{{ product.vendor }}</p>
+                    <p
+                      class="modal__product-sku"
+                      aria-label="{{ 'sections.featured_product.modal.sku' | t }}: {{ product.selected_or_first_available_variant.sku }}"
+                    >
+                      {{ 'sections.featured_product.modal.sku' | t }}:
+                      {{ product.selected_or_first_available_variant.sku }}
+                    </p>
+                    <div class="modal__product-price">
+                      <span class="modal__product-price--sale" aria-label="{{ product.price | money }}">
+                        {{- product.price | money -}}
+                      </span>
+                      <s class="modal__product-price--regular" aria-label="{{ product.compare_at_price | money }}">
+                        {{- product.compare_at_price | money -}}
+                      </s>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="modal__footer">
+          <product-form class="product-form">
+            {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate' -%}
+              <input
+                type="hidden"
+                name="id"
+                value="{{ product.selected_or_first_available_variant.id }}"
+                class="product-variant-id"
+              >
+              <div class="product-form__buttons">
+                <button
+                  type="submit"
+                  name="add"
+                  class="modal__btn-add"
+                  data-add-to-cart-modal
+                  aria-label="{{ 'sections.featured_product.add_to_cart' | t }}"
+                >
+                  <span>{{ 'sections.featured_product.add_to_cart' | t }}</span>
+                  {%- render 'loading-spinner' -%}
+                </button>
+                <button
+                  type="button"
+                  class="modal__btn-continue"
+                  data-continue-to-cart
+                  aria-label="{{ 'sections.featured_product.continue_to_cart' | t }}"
+                >
+                  <span>{{ 'sections.featured_product.continue_to_cart' | t }}</span>
+                </button>
+              </div>
+            {%- endform -%}
+          </product-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

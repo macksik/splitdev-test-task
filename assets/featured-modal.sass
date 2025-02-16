@@ -1,0 +1,223 @@
+// Variables
+$color-primary: #05117F
+$color-primary-dark: darken($color-primary, 5%)
+$color-white: #fff
+$color-black: #000
+$color-gray-light: #E8E8E8
+$color-gray-border: #F5F5F5
+$color-gray-text: #666666
+$color-text-dark: #262C3E
+$color-text-body: #2c2c2c
+$modal-overlay-bg: rgba(0, 0, 0, 0.5)
+$modal-shadow: rgba(0, 0, 0, 0.1)
+
+// Dimensions
+$modal-width: 918px
+$modal-height: 518px
+$modal-padding: 40px
+$button-padding: 10px 20px
+
+// Mixins
+=flex($direction: row, $justify: flex-start, $align: stretch)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  align-items: $align
+
+=text-style($size, $line-height, $color, $weight: normal)
+  font-size: $size
+  line-height: $line-height
+  color: $color
+  font-weight: $weight
+
+=button-base
+  padding: $button-padding
+  font-size: 16px
+  line-height: 24px
+  cursor: pointer
+  border: none
+  max-height: 44px
+  transition: all 0.3s ease
+
+=image-cover
+  width: 100%
+  height: 100%
+  object-fit: cover
+
+=absolute-center
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+.modal-overlay
+  position: fixed
+  inset: 0
+  background: $modal-overlay-bg
+  +flex(row, center, center)
+  z-index: 1000
+  display: none  
+  &.active
+    display: flex  
+
+.modal
+  max-width: $modal-width
+  width: 100%
+  max-height: $modal-height
+  height: 100%
+  background: $color-white
+  border: 1px solid $color-gray-border
+  box-shadow: 0 2px 10px $modal-shadow
+  +flex(column)
+  position: relative
+  &__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 10px 20px
+    border-bottom: 1px solid rgba(245, 245, 245, 1)
+    background: #fff
+
+  &__title
+    +text-style(24px, 1, $color-primary, bold)
+    margin-bottom: 32px
+
+  &__description
+    margin: 0
+
+    p 
+      margin: 0
+
+    strong 
+      +text-style(20px, 20px, inherit, 700)
+
+    em 
+      +text-style(inherit, 24px, $color-primary)
+      font-style: normal
+
+  &__products
+    +flex(column)
+    gap: 10px
+    margin: 32px 0
+
+  &__product
+    +flex(row)
+    gap: 10px
+
+  &__product-info
+    p
+      margin: 0
+    
+    h3 
+      margin: 0
+      +text-style(14px, 24px, $color-text-dark)
+
+    .modal__product-vendor
+      +text-style(12px, 16px, $color-black)
+
+    .modal__product-sku
+      +text-style(12px, 16px, $color-gray-text)
+      margin: 11px 0
+
+
+    .modal__product-price
+      +flex(row, flex-start, center)
+      display: inline-flex
+      gap: 10px
+      +text-style(18px, 24px, inherit)
+
+      &--sale
+        color: $color-primary
+        font-weight: 700
+
+      &--regular
+        color: $color-gray-text
+        font-weight: 400
+
+  &__product-image
+    max-width: 88px
+    max-height: 100px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  &__close
+    background: transparent
+    border: none
+    cursor: pointer
+    position: absolute
+    right: 40px
+    top: 40px
+    width: 24px
+    height: 24px
+    z-index: 5
+    padding: 0
+
+  &__body
+    +flex(row, center, flex-start)
+    flex: 1
+    padding: $modal-padding
+    gap: 10px
+    width: fit-content
+  &__image
+    max-width: 411px
+    max-height: 438px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  &__content
+    +flex(column, flex-start, flex-start)
+    position: relative
+    height: 100%
+
+
+    p
+      margin-bottom: 10px
+      font-size: 14px
+      line-height: 20px
+      letter-spacing: 0
+      color: $color-text-body
+
+  &__footer
+    +flex(row)
+    gap: 10px
+
+    .modal__btn-add
+      +button-base
+      +text-style(16px, 24px, $color-gray-light, 700)
+      background: $color-primary
+      min-width: 170px
+      &:hover
+        background: $color-primary-dark
+
+    .modal__btn-continue
+      +button-base
+      +text-style(16px, 24px, $color-primary)
+      background: $color-white
+      border: 1px solid $color-primary
+      padding: 10px 40px
+      min-width: 237px
+      &:hover
+        background: darken($color-gray-light, 5%)
+
+  &__product-price
+    display: flex
+    gap: 10px
+    align-items: center
+    
+    &--sale
+      color: $color-primary
+      font-weight: bold
+    
+    &--regular
+      color: $color-gray-text
+      text-decoration: line-through
+      &:only-child
+        color: $color-primary
+        text-decoration: none
+        font-weight: bold

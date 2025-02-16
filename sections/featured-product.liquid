@@ -386,11 +386,12 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
-                  {%- render 'buy-buttons',
+                  {%- render 'buy-buttons-featured',
                     block: block,
                     product: product,
                     product_form_id: product_form_id,
-                    section_id: section.id
+                    section_id: section.id,
+                    show_modal: section.settings.enable_modal
                   -%}
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
@@ -484,6 +485,20 @@
   {% if product.media.size > 0 %}
     <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  <!-- Added Show Modal button and modal component -->
+  {% if section.settings.enable_modal %}
+    <featured-modal>
+      {%- render 'featured-modal-content',
+        heading: section.settings.modal_heading,
+        image: section.settings.modal_image,
+        show_once: section.settings.show_once,
+        products: section.settings.modal_products,
+        product: product,
+        description: section.settings.modal_description
+      -%}
+    </featured-modal>
   {% endif %}
 </product-info>
 
@@ -1467,6 +1482,45 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Modal Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_modal",
+      "label": "Enable Modal",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "modal_image",
+      "label": "Modal Image"
+    },
+    {
+      "type": "text",
+      "id": "modal_heading",
+      "label": "Modal Heading",
+      "default": "COMPLETE YOUR PURCHASE"
+    },
+    {
+      "type": "richtext",
+      "id": "modal_description",
+      "label": "Modal Description",
+      "default": "<p>You are trying to add Jordan Spizike Low to the cart.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_once",
+      "label": "Show only once per customer",
+      "default": false
+    },
+    {
+      "type": "product_list",
+      "id": "modal_products",
+      "label": "Products to show",
+      "limit": 2
     }
   ],
   "presets": [

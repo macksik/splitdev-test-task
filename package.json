@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "shopify theme dev --store i1pve1-02.myshopify.com"
+    "dev": "shopify theme dev --store split-test-dev-store.myshopify.com"
   },
   "repository": {
     "type": "git",
