@@ -10,10 +10,14 @@
         </div>
       {% endif %}
       <div class="modal__content">
-        <span class="modal__title">{{ heading }}</span>
-        <div class="modal__description">
-          {{ description }}
-        </div>
+        {% if heading != blank %}
+          <span class="modal__title">{{ heading }}</span>
+        {% endif %}
+        {% if description != blank %}
+          <div class="modal__description">
+            {{ description }}
+          </div>
+        {% endif %}
         {% if products != blank %}
           <div class="modal__products">
             {% for product in products %}
