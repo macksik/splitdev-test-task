@@ -74,7 +74,7 @@
         "enable_modal": true,
         "modal_image": "shopify://shop_images/Image.png",
         "modal_heading": "COMPLETE YOUR PURCHASE",
-        "modal_description": "<p>You are trying to add Jordan Spizike Low to the cart.</p>",
+        "modal_description": "<p>You are trying to add <strong>Jordan Spizike</strong> Low to the cart.<br/>Complete your look and save <em><strong>$13!</strong></em></p>",
         "show_once": false,
         "modal_products": [
           "the-collection-snowboard-hydrogen",
