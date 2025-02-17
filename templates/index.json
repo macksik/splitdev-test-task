@@ -75,7 +75,7 @@
         "modal_image": "shopify://shop_images/Image.png",
         "modal_heading": "COMPLETE YOUR PURCHASE",
         "modal_description": "<p>You are trying to add <strong>Jordan Spizike</strong> Low to the cart.<br/>Complete your look and save <em><strong>$13!</strong></em></p>",
-        "show_once": true,
+        "show_once": false,
         "modal_products": [
           "the-collection-snowboard-hydrogen",
           "the-collection-snowboard-liquid"
