@@ -26,6 +26,7 @@
   justify-content: flex-start;
   align-items: stretch;
   position: relative;
+  font-family: var(--font-body-family);
 }
 .modal__header {
   display: flex;
@@ -166,9 +167,9 @@
   align-items: flex-start;
   position: relative;
   height: 100%;
+  max-height: 438px;
 }
 .modal__content p {
-  margin-bottom: 10px;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0;

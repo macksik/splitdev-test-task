@@ -3,6 +3,12 @@ if (!customElements.get('featured-modal')) {
     constructor() {
       super();
       this.productForm = this.querySelector('product-form');
+      this.overlay = this.querySelector('.modal-overlay');
+      this.closeButton = this.querySelector('.modal__close');
+      this.showOnce = this.hasAttribute('data-show-once');
+
+      console.log('showOnce', this.showOnce);
+
       if (this.productForm) {
         this.setupFormListeners();
       }
@@ -15,48 +21,52 @@ if (!customElements.get('featured-modal')) {
     }
 
     connectedCallback() {
-      const overlay = this.querySelector('.modal-overlay');
-      const closeButton = this.querySelector('.modal__close');
-
       if (this.shouldShowModal()) {
-        if (closeButton) {
-          closeButton.addEventListener('click', () => this.close());
-        }
+        this.setupEventListeners();
+      }
+    }
 
-        if (overlay) {
-          overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-              this.close();
-            }
-          });
-        }
+    setupEventListeners() {
+      if (this.closeButton) {
+        this.closeButton.addEventListener('click', () => this.close());
+      }
+
+      if (this.overlay) {
+        this.overlay.addEventListener('click', (e) => {
+          if (e.target === this.overlay) {
+            this.close();
+          }
+        });
       }
     }
 
     shouldShowModal() {
-      const showOnce = this.hasAttribute('data-show-once');
-      if (!showOnce) return true;
+      if (!this.showOnce) {
+        return true;
+      }
 
       const modalShown = sessionStorage.getItem('modalShown');
-      return !modalShown;
+      return modalShown !== 'true';
     }
 
     open() {
-      const overlay = this.querySelector('.modal-overlay');
-      if (overlay && this.shouldShowModal()) {
-        overlay.classList.add('active');
+      if (!this.shouldShowModal()) {
+        return;
+      }
+
+      if (this.overlay) {
+        this.overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        if (this.hasAttribute('data-show-once')) {
+        if (this.showOnce) {
           sessionStorage.setItem('modalShown', 'true');
         }
       }
     }
 
     close() {
-      const overlay = this.querySelector('.modal-overlay');
-      if (overlay) {
-        overlay.classList.remove('active');
+      if (this.overlay) {
+        this.overlay.classList.remove('active');
         document.body.style.overflow = '';
       }
     }

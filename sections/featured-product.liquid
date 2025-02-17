@@ -489,11 +489,14 @@
 
   <!-- Added Show Modal button and modal component -->
   {% if section.settings.enable_modal %}
-    <featured-modal>
+    <featured-modal
+      {% if section.settings.show_once %}
+        data-show-once
+      {% endif %}
+    >
       {%- render 'featured-modal-content',
         heading: section.settings.modal_heading,
         image: section.settings.modal_image,
-        show_once: section.settings.show_once,
         products: section.settings.modal_products,
         product: product,
         description: section.settings.modal_description
