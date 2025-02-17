@@ -161,8 +161,19 @@ if (!customElements.get('product-form')) {
               return;
             }
 
-            this.cart.renderContents(parsedState);
-            document.dispatchEvent(new CustomEvent('cart:update'));
+            let singleItemState = {};
+            if (parsedState.items && parsedState.items.length > 0) {
+              singleItemState = Object.assign({}, parsedState.items[0], { sections: parsedState.sections });
+            } else {
+              return;
+            }
+
+            this.cart.renderContents(singleItemState);
+
+            const modal = this.closest('featured-modal');
+            if (modal) {
+              modal.close();
+            }
           } else {
             this.error = true;
             publish(PUB_SUB_EVENTS.cartError, {

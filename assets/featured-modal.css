@@ -180,6 +180,7 @@
   justify-content: flex-start;
   align-items: stretch;
   gap: 10px;
+  margin-top: auto;
 }
 .modal__footer .modal__btn-add {
   padding: 10px 20px;
