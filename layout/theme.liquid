@@ -296,6 +296,15 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    {% capture body_template %}
+      {{ content_for_layout }}
+    {% endcapture %}
+
+    {% if body_template contains 'section-featured-product' %}
+      {{ 'featured-modal.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'featured-modal.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
