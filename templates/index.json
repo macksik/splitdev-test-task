@@ -36,14 +36,10 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity_selector_TcYAWr": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
         "buy_buttons_DQKGnb": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
           }
         },
@@ -59,12 +55,11 @@
         "title_Md4wNM",
         "price_wiCfkJ",
         "variant_picker_TbciyT",
-        "quantity_selector_TcYAWr",
         "buy_buttons_DQKGnb",
         "share_hCjb39"
       ],
       "settings": {
-        "product": "",
+        "product": "the-3p-fulfilled-snowboard",
         "color_scheme": "",
         "secondary_background": false,
         "media_size": "medium",
@@ -75,7 +70,16 @@
         "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "enable_modal": true,
+        "modal_image": "shopify://shop_images/Image.png",
+        "modal_heading": "COMPLETE YOUR PURCHASE",
+        "modal_description": "<p>You are trying to add Jordan Spizike Low to the cart.</p>",
+        "show_once": false,
+        "modal_products": [
+          "the-collection-snowboard-hydrogen",
+          "the-collection-snowboard-liquid"
+        ]
       }
     }
   },
