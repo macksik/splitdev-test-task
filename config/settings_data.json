@@ -135,6 +135,13 @@
       }
     },
     "content_for_index": [],
+    "blocks": {
+      "10560697916000961394": {
+        "type": "shopify://apps/age-verification-popup/blocks/omg-app-age/92f920f4-d437-4eb4-9aab-e091741a3ce4",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
